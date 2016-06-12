@@ -83,6 +83,7 @@ struct MANIFEST_ENUM_DEFINITION
 #include "manifest_definitions.h"
 #include "manifest_definitions_0001082e.h"
 #include "manifest_definitions_00010113.h"
+#include "manifest_definitions_0001031b.h"
 
 struct
 {
@@ -98,6 +99,7 @@ struct
     { 0x0001082e, MANIFEST_DEFINITION_0001082e_COUNT, MANIFEST_DEFINITIONS_0001082e },
     { 0x00010834, MANIFEST_DEFINITION_0001082e_COUNT, MANIFEST_DEFINITIONS_0001082e },
     { 0x00010113, MANIFEST_DEFINITION_00010113_COUNT, MANIFEST_DEFINITIONS_00010113 },
+    { 0x0001031b, MANIFEST_DEFINITION_0001031b_COUNT, MANIFEST_DEFINITIONS_0001031b },
 };
 
 #define MANIFEST_DEFINITION_COUNT (sizeof(MANIFEST_DEFINITIONS) / sizeof(MANIFEST_DEFINITIONS[0]))
@@ -112,6 +114,7 @@ void show_device_versions(TTWATCH *watch)
     write_log(0, "BLE Version:      %u\n", watch->ble_version);
     write_log(0, "Firmware Version: %d.%d.%d\n", (watch->firmware_version >> 16) & 0xff,
         (watch->firmware_version >> 8) & 0xff, watch->firmware_version & 0xff);
+    write_log(0, "Hex FW version    0x%08x\n", watch->firmware_version);
 
     if (ttwatch_get_watch_name(watch, name, sizeof(name)) != TTWATCH_NoError)
     {
