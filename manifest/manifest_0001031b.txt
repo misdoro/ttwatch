@@ -251,4 +251,5 @@ freestyle/training/zones/speed/low,486,f,1,m/s,100,,
 freestyle/training/zones/speed/high,487,f,1,m/s,100,,
 indoor/training/zones/speed/low,488,f,1,m/s,100,,
 indoor/training/zones/speed/high,489,f,1,m/s,100,,
+options/tracker/heart,500,e,1,0=off,1=on
 
