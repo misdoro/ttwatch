@@ -1,5 +1,8 @@
 cmake_minimum_required (VERSION 2.8)
 project (TTWatch C CXX)
+if(NOT CMAKE_BUILD_TYPE)
+  set (CMAKE_BUILD_TYPE Debug)
+endif(NOT CMAKE_BUILD_TYPE)
 
 option(unsafe "Enable unsafe operations" off)
 option(daemon "Enable daemon operations" on)
@@ -53,7 +56,7 @@ target_link_libraries(ttbinmod libttbin m ${CURL_LIBRARIES})
 set(MANIFEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/manifest")
 
 add_custom_target(manifest
-  DEPENDS manifest_definitions.h manifest_definitions_00010113.h manifest_definitions_0001082e.h manifest_definitions_0001031b.h)
+  DEPENDS manifest_definitions.h manifest_definitions_00010113.h manifest_definitions_0001082e.h manifest_definitions_0001031b.h manifest_definitions_000103a0.h)
 add_custom_command(OUTPUT manifest_definitions.h
   DEPENDS ${MANIFEST_DIR}/manifest.txt ${MANIFEST_DIR}/make_manifest.pl
   COMMAND ${PERL_EXECUTABLE} ${MANIFEST_DIR}/make_manifest.pl < ${MANIFEST_DIR}/manifest.txt > manifest_definitions.h)
@@ -69,6 +72,10 @@ add_custom_command(OUTPUT manifest_definitions_0001082e.h
 add_custom_command(OUTPUT manifest_definitions_0001031b.h
   DEPENDS ${MANIFEST_DIR}/manifest_0001031b.txt ${MANIFEST_DIR}/make_manifest.pl
   COMMAND ${PERL_EXECUTABLE} ${MANIFEST_DIR}/make_manifest.pl < ${MANIFEST_DIR}/manifest_0001031b.txt > manifest_definitions_0001031b.h)
+
+add_custom_command(OUTPUT manifest_definitions_000103a0.h
+  DEPENDS ${MANIFEST_DIR}/manifest_000103a0.txt ${MANIFEST_DIR}/make_manifest.pl
+  COMMAND ${PERL_EXECUTABLE} ${MANIFEST_DIR}/make_manifest.pl < ${MANIFEST_DIR}/manifest_000103a0.txt > manifest_definitions_000103a0.h)
 
   
 set(TTWATCH_SRC src/ttwatch.c src/log.c src/options.c src/json.c src/download.c src/firmware.c src/misc.c src/get_activities.c src/update_gps.c src/set_time.c)
