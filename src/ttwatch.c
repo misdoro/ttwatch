@@ -85,6 +85,7 @@ struct MANIFEST_ENUM_DEFINITION
 #include "manifest_definitions_00010113.h"
 #include "manifest_definitions_0001031b.h"
 #include "manifest_definitions_000103a0.h"
+#include "manifest_definitions_000103fa.h"
 
 struct
 {
@@ -102,6 +103,8 @@ struct
     { 0x00010113, MANIFEST_DEFINITION_00010113_COUNT, MANIFEST_DEFINITIONS_00010113 },
     { 0x0001031b, MANIFEST_DEFINITION_0001031b_COUNT, MANIFEST_DEFINITIONS_0001031b },
     { 0x000103a0, MANIFEST_DEFINITION_000103a0_COUNT, MANIFEST_DEFINITIONS_000103a0 },
+    { 0x000103cb, MANIFEST_DEFINITION_000103a0_COUNT, MANIFEST_DEFINITIONS_000103a0 },
+    { 0x000103fa, MANIFEST_DEFINITION_000103fa_COUNT, MANIFEST_DEFINITIONS_000103fa },
 };
 
 #define MANIFEST_DEFINITION_COUNT (sizeof(MANIFEST_DEFINITIONS) / sizeof(MANIFEST_DEFINITIONS[0]))
@@ -844,7 +847,7 @@ void do_display_settings(TTWATCH *watch)
             break;
         }
         write_log(0, "\n");
-        
+
     }
 }
 
