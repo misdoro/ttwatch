@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ttwatch" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug-ttbincnv">
+				<Option output="bin/Debug/ttbincnv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="-a /home/doronin/ttwatch/Tommy/2017-01-22/Gym_11-41-14.ttbin" />
+				<Option projectIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ttwatch" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="Debug-ttwatch">
+				<Option output="bin/Debug/ttwatch" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters=" --get-activities" />
+				<Option projectIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Debug-ttwatchd">
+				<Option output="bin/Debug/ttwatchd" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Debug-ttbinmod">
+				<Option output="bin/Debug/ttbinmod" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="/home/doronin/Projects/ttwatch/include" />
+			<Add directory="/home/doronin/Projects/ttwatch/src" />
+			<Add directory="/usr/include/libusb-1.0/" />
+			<Add directory="/home/doronin/Projects/ttwatch/" />
+		</Compiler>
+		<Linker>
+			<Add library="usb-1.0" />
+			<Add library="curl" />
+		</Linker>
+		<Unit filename="include/cycling_cadence.h" />
+		<Unit filename="include/download.h" />
+		<Unit filename="include/firmware.h" />
+		<Unit filename="include/get_activities.h" />
+		<Unit filename="include/json.h" />
+		<Unit filename="include/libttwatch.h" />
+		<Unit filename="include/libttwatch.hpp" />
+		<Unit filename="include/log.h" />
+		<Unit filename="include/misc.h" />
+		<Unit filename="include/options.h" />
+		<Unit filename="include/set_time.h" />
+		<Unit filename="include/ttbin.h" />
+		<Unit filename="include/update_gps.h" />
+		<Unit filename="src/cycling_cadence.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/download.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/export_csv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/export_gpx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/export_kml.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/export_tcx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/firmware.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/get_activities.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/json.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/libttwatch.cpp" />
+		<Unit filename="src/libttwatch_cpp.cpp" />
+		<Unit filename="src/log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/options.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/set_time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ttbin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ttbincnv.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug-ttbincnv" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="src/ttbinmod.c">
+			<Option compilerVar="CC" />
+			<Option target="Release" />
+			<Option target="Debug-ttbinmod" />
+		</Unit>
+		<Unit filename="src/ttwatch.c">
+			<Option compilerVar="CC" />
+			<Option target="Release" />
+			<Option target="Debug-ttwatch" />
+		</Unit>
+		<Unit filename="src/ttwatchd.c">
+			<Option compilerVar="CC" />
+			<Option target="Release" />
+			<Option target="Debug-ttwatchd" />
+		</Unit>
+		<Unit filename="src/update_gps.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
