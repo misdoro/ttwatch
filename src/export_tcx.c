@@ -70,6 +70,7 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
     uint32_t heart_rate_count = 0;
     uint32_t move_count = 0;
     uint32_t total_step_count = 0;
+    uint32_t time = 0;
     unsigned heart_rate;
     enum LapState lap_state;
     CyclingCadenceData cc_data = cc_initialize();
@@ -98,7 +99,7 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
             }
         }
     }
-    else if (ttbin->activity == ACTIVITY_INDOOR || ttbin->activity == ACTIVITY_GYM)
+    else if (ttbin->activity == ACTIVITY_INDOOR || ttbin->activity == ACTIVITY_GYM || ttbin->activity == ACTIVITY_SWIMMING)
     {
 
     }
@@ -155,6 +156,7 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
         case TAG_INDOOR_CYCLING:
         case TAG_GPS:
         case TAG_GYM:
+        case TAG_SWIM:
             if (record->tag == TAG_TREADMILL)
             {
                 /* this will happen if the activity is paused and then resumed */
@@ -185,6 +187,16 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
                     break;
                 distance = record->indoor_cycling.distance_meters;
                 timestamp = record->indoor_cycling.timestamp;
+            }
+            else if (record->tag == TAG_SWIM)
+            {
+                if (record->indoor_cycling.timestamp == 0)
+                    break;
+                timestamp = record->swim.timestamp;
+                distance = record->swim.total_distance;
+                steps = record->swim.strokes;
+                total_step_count += steps;
+                time = timestamp - ttbin->timestamp_utc;
             }
             else /* TAG_GPS only */
             {
@@ -233,7 +245,7 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
                 if (!isnan(record->gps.elevation))
                     fprintf(file, "                        <AltitudeMeters>%.0f</AltitudeMeters>\r\n", record->gps.elevation);
             }
-            fprintf(file, "                        <DistanceMeters>%.5f</DistanceMeters>\r\n", distance);
+            fprintf(file, "                        <DistanceMeters>%.2f</DistanceMeters>\r\n", distance);
 
             if (heart_rate > 0)
             {
@@ -269,6 +281,21 @@ void export_tcx(TTBIN_FILE *ttbin, FILE *file)
             fputs(        "                            </TPX>\r\n"
                           "                        </Extensions>\r\n"
                           "                    </Trackpoint>\r\n", file);
+
+            if (record->tag == TAG_SWIM && lap_start_distance < distance)
+            { // New lap when we reach the border in swimming pool
+                lap.step_count = total_step_count;
+                lap.time = time - lap_start_time;
+                lap.distance = distance - lap_start_distance;
+                lap.calories = record->swim.total_calories - lap_start_calories;
+                lap.trigger_method = "Distance";
+                lap_state = LapState_Finish;
+
+                lap_start_distance = distance;
+                lap_start_calories = lap.calories;
+                lap_start_time = time;
+                total_step_count = 0;
+            }
 
             if (lap_state == LapState_Finish)
             {
